@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProjectsTest extends TestCase
+class ManageProjectsTest extends TestCase
 {
 
     use WithFaker, RefreshDatabase;
@@ -21,6 +21,8 @@ class ProjectsTest extends TestCase
         $project = factory('App\Project')->create();
        
         $this->get('/projects')->assertRedirect('login');
+
+        $this->get('/projects/create')->assertRedirect('login');
 
         $this->get($project->path())->assertRedirect('login');
 
