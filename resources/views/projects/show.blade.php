@@ -30,15 +30,21 @@
 
                     {{-- tasks --}}
 
+                    @foreach ($project->tasks as $task)
+                        
+                        <div class="card mb-3"> {{ $task->body }} </div>
+
+                    @endforeach
+
+                    
+{{-- 
                     <div class="card mb-3">Lorem ipsum.</div>
 
                     <div class="card mb-3">Lorem ipsum.</div>
 
                     <div class="card mb-3">Lorem ipsum.</div>
 
-                    <div class="card mb-3">Lorem ipsum.</div>
-
-                    <div class="card">Lorem ipsum.</div>
+                    <div class="card">Lorem ipsum.</div> --}}
 
                 </div>
 
