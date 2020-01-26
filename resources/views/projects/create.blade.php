@@ -18,7 +18,7 @@
 
         <div>
 
-            <label for="description">Title</label>
+            <label for="description">Description</label>
 
             <textarea  name="description" id="description"></textarea>
 

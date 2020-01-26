@@ -17,7 +17,8 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('owner_id');
             $table->string('title');
-            $table->text('description');            
+            $table->text('description');          
+            $table->text('notes')->nullable();
             $table->timestamps();
             
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
