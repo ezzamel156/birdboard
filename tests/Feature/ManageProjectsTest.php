@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Project;
+use Facades\Tests\Setup\ProjectFactory;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,8 +17,6 @@ class ManageProjectsTest extends TestCase
     
     public function guests_cannot_manage_projects()
     {
-        //$this->withoutExceptionHandling();
-
         $project = factory('App\Project')->create();
        
         $this->get('/projects')
@@ -37,10 +36,6 @@ class ManageProjectsTest extends TestCase
     
     public function a_user_can_create_a_project()
     {
-        $this->withoutExceptionHandling();
-
-        //$this->actingAs(factory('App\User')->create()); //sign in user
-
         $this->signIn();
 
         $this->get('/projects/create')
@@ -57,8 +52,6 @@ class ManageProjectsTest extends TestCase
         $project = Project::where($attributes)->first();
 
         $response->assertRedirect($project->path());
-            
-        $this->assertDatabaseHas('projects', $attributes);
 
         $this->get($project->path())
             ->assertSee($attributes['title'])
@@ -70,17 +63,13 @@ class ManageProjectsTest extends TestCase
     
     public function a_user_can_update_a_project()
     {
-        $this->signIn(); //sign in user
+        $project = ProjectFactory::create();
 
-        $this->withoutExceptionHandling();
+        $this->ActingAs($project->owner)
+            ->patch($project->path(), $attributes = ['notes' => 'Changed'])
+            ->assertRedirect($project->path());
 
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
-
-        $this->patch($project->path(), [
-            'notes' => 'Changed'
-        ])->assertRedirect($project->path());
-
-        $this->assertDatabaseHas('projects', ['notes' => 'Changed']);
+        $this->assertDatabaseHas('projects', $attributes);
     }
 
     /** @test */
@@ -99,23 +88,20 @@ class ManageProjectsTest extends TestCase
     public function an_authenticated_user_cannot_update_the_projects_of_others()
     {
         $this->signIn();
-        //$this->withoutExceptionHandling();
+        
         $project = factory('App\Project')->create();
 
-        $this->patch($project->path(), [])->assertStatus(403);
+        $this->patch($project->path())->assertStatus(403);
     }
 
     /** @test */
     
     public function a_user_can_view_their_project() 
     {
-        $this->signIn(); //sign in user
+        $project = ProjectFactory::create();
 
-        $this->withoutExceptionHandling();
-
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
-
-        $this->get($project->path())
+        $this->ActingAs($project->owner)
+            ->get($project->path())
             ->assertSee($project->description)
             ->assertSee($project->title);
     }

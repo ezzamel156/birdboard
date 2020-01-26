@@ -9,7 +9,6 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        
         $projects = auth()->user()->projects;
 
         return view('projects.index', compact('projects'));
@@ -17,21 +16,18 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
-        $this->authorize('update', $project);
+        $this->authorize('update', $project); //ProjectPolicy
         
         return view('projects.show', compact('project'));
     }
 
     public function create()
     {
-
         return view('projects.create');
-
     }
 
     public function store()
     {     
-
         $attributes = request()->validate([
             'title' => 'required', 
 
