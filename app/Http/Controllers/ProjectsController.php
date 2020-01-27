@@ -52,11 +52,11 @@ class ProjectsController extends Controller
     protected function validateRequest()
     {
         return request()->validate([
-            'title' => 'required', 
+            'title' => 'sometimes|required', 
 
-            'description' => 'required',
+            'description' => 'sometimes|required',
 
-            'notes' => 'min:3'
+            'notes' => 'nullable'
         ]);
     }
 }
