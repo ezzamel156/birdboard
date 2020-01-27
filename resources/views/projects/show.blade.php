@@ -12,7 +12,7 @@
 
             </p>
 
-            <a class="button" href="/projects/create">Create a Project</a>
+            <a class="button" href="{{$project->path().'/edit'}}">Edit Project</a>
 
         </div>
 
