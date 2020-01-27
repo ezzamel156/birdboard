@@ -26,19 +26,14 @@ class ProjectTasksController extends Controller
     {
         $this->authorize('update', $task->project);
 
-        request()->validate([
-            'body' => 'required'
-        ]);
-        
-        $task->update([
+        //$attributes = request()->validate(['body' => 'required']);
 
-            'body' => request('body'),
+        $task->update(request()->validate(['body' => 'required']));
 
-            'completed' => request()->has('completed')
+        $method = request('completed') ? 'complete' : 'incomplete';
 
-        ]);
+        $task->$method();
 
         return redirect($project->path());
-
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Task;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,5 +33,34 @@ class TaskTest extends TestCase
         $this->assertInstanceOf('App\Project', $task->project);
 
     }
+
+    /** @test */
     
+    public function a_task_can_be_completed()
+    {
+        $task = factory(Task::class)->create();
+
+        $this->assertFalse($task->completed);
+
+        $task->complete();
+
+        $this->assertTrue($task->fresh()->completed);
+    }
+    
+    /** @test */
+    
+    public function a_task_can_marked_as_completed()
+    {
+        $task = factory(Task::class)->create(['completed' => true]);
+
+        //$task->complete();
+
+        $this->assertTrue($task->fresh()->completed);
+
+        $task->incomplete();
+
+        $this->assertFalse($task->completed);
+
+        
+    }
 }
