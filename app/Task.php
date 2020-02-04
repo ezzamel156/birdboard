@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     protected $touches = ['project'];
+
+    protected static $recordableEvents = ['created', 'deleted'];
 
     protected $casts = [
         'completed' => 'boolean'
@@ -36,18 +40,5 @@ class Task extends Model
         $this->update(['completed' => false]);
 
         $this->recordActivity('incompleted_task');
-    }
-
-    public function activities()
-    {
-        return $this->morphMany(Activity::class, 'subject')->latest();
-    }
-
-    public function recordActivity($description)
-    {
-        $this->activities()->create([
-            'project_id' => $this->project->id,
-            'description' => $description
-        ]);
     }
 }
