@@ -51,7 +51,9 @@ trait RecordsActivity
      */
     public function recordActivity($description)
     {
+        //dd($this->owner_id);
         $this->activities()->create([
+            'user_id' => ($this->project ?? $this)->owner->id,
             'description' => $description,
             'changes' =>  $this->activityChanges(),
             'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id
@@ -61,7 +63,7 @@ trait RecordsActivity
     public function activities()
     {
         return $this->morphMany(Activity::class, 'subject')->latest();
-    }    
+    }  
 
     /** 
      * Get changes of a model
