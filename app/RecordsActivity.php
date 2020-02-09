@@ -52,6 +52,7 @@ trait RecordsActivity
     public function recordActivity($description)
     {
         //dd($this->owner_id);
+       // dd(auth()->user()->id);
         $this->activities()->create([
             'user_id' => ($this->project ?? $this)->owner->id,
             'description' => $description,
