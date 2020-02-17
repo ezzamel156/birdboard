@@ -11,13 +11,13 @@
             <div class="flex items-center">
                 @foreach ($project->members as $member)
                     <img 
-                        src="{{ gravatar_url($member->email)."&d='https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg'" }}" 
+                        src="{{ gravatar_url($member->email) }}" 
                         alt=" {{ $member->name }}'s avatar " 
                         class="rounded-full w-8 mr-2">
                 @endforeach
 
                 <img 
-                    src="{{ gravatar_url($project->owner->email)."&d='https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg'" }}" 
+                    src="{{ gravatar_url($project->owner->email) }}" 
                     alt=" {{ $project->owner->name }}'s avatar " 
                     class="rounded-full w-8 mr-2">
 
