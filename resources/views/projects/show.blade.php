@@ -11,13 +11,13 @@
             <div class="flex items-center">
                 @foreach ($project->members as $member)
                     <img 
-                        src="{{ gravatar_url($member->email) }}" 
+                        src="https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg" 
                         alt=" {{ $member->name }}'s avatar " 
                         class="rounded-full w-8 mr-2">
                 @endforeach
 
                 <img 
-                    src="{{ gravatar_url($project->owner->email) }}" 
+                    src="https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg" 
                     alt=" {{ $project->owner->name }}'s avatar " 
                     class="rounded-full w-8 mr-2">
 
@@ -86,6 +86,10 @@
             <div class="lg:w-1/4 px-3 lg:py-8">
                 @include('projects.card')           
                 @include('projects.activity.card')
+
+                @can('manage', $project)
+                    @include('projects.invite')   
+                @endcan                                           
             </div>
         </div>
     </main>
