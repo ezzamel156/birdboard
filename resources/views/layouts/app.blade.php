@@ -21,7 +21,7 @@
 </head>
 <body class="theme-light bg-page">
     <div id="app">
-        <nav class="bg-header">
+        <nav class="bg-header section">
             <div class="container mx-auto">
                 <div class="flex justify-between items-center py-2">
                     <h1>
@@ -78,10 +78,12 @@
                 </div>
             </div>
         </nav>
-
-        <main class="container py-4 mx-auto">
-            @yield('content')
-        </main>
+        <div class="section">
+            <main class="container py-4 mx-auto">
+                @yield('content')
+            </main>
+        </div>
+        
     </div>
 </body>
 </html>
