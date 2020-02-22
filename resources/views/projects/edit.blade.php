@@ -13,7 +13,7 @@
     
             @method('PATCH')       
 
-            @include('projects._form')
+            @include('projects.form')
 
         </form>
     </div>
