@@ -1,5 +1,4 @@
 <template>
-
     <modal name="new-project" classes="bg-card p-10 rounded-lg" height="auto">
         <form @submit.prevent="submit">
             <h1 class="font-normal mb-16 text-center text-2xl">Let's Start Something New</h1>
@@ -7,7 +6,6 @@
                 <div class="flex-1 mr-4">
                     <div class="mb-4">
                         <label for="title" class="text-sm block mb-2">Title</label>
-
                         <input  
                             id="title" 
                             type="text" 
@@ -37,10 +35,7 @@
                             class="border border-muted py-2 px-2 text-xs block w-full rounded mb-2" 
                             placeholder="Task 1" 
                             v-for="task in form.tasks"
-                            v-model="task.body">
-
-                        
-
+                            v-model="task.body">                        
                     </div>
                     <button type="button" class="inline-flex items-center text-xs" @click="addTask">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="mr-2">
@@ -59,12 +54,10 @@
             </footer>
         </form>        
     </modal>
-
 </template>
 
 <script>
 import BirdboardForm from "./BirdboardForm";
-
 export default {
     data() {
         return {

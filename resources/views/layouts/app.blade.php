@@ -56,32 +56,41 @@
                                 @endif
                             @else
                                 <theme-switcher></theme-switcher>
-                                <a  class="flex items-center text-default no-underline text-sm" 
-                                    href="#" 
-                                    role="button" 
-                                    data-toggle="dropdown" 
-                                    aria-haspopup="true" 
-                                    aria-expanded="false" 
-                                    v-pre
-                                >
-                                    <img src="https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg" 
-                                        alt=" {{ Auth::user()->name }}'s avatar " 
-                                        class="rounded-full mr-3"
-                                        width="35"
-                                    >
-                                    {{ Auth::user()->name }}
-                                    {{-- <div>
-                                        <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+
+                                <dropdown align="right" width="200px">
+                                    <template v-slot:trigger>
+                                        <button class="flex items-center text-default no-underline text-sm focus:outline-none">
+                                            <img src="https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg" 
+                                                alt=" {{ Auth::user()->name }}'s avatar " 
+                                                class="rounded-full mr-3"
+                                                width="35"
+                                            >
+                                            {{ Auth::user()->name }}
+                                            
+                                        </button>                                        
+                                    </template v-slot:default>
+                                        <a  href="{{ route('logout') }}" 
+                                            class="dropdown-menu-link" 
+                                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
-                                        </a>
-    
+                                        </a>                  
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
-                                        </form>
-                                    </div> --}}
-                            </a>                                                            
+                                        </form>                     
+                                    </template>
+                                </dropdown>
+                                
+                                {{-- <div>
+                                    <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div> --}}                                                            
                             @endguest
                         </ul>
                     </div>

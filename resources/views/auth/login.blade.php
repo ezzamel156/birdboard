@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="{{ route('login') }}" class="lg:w-1/2 lg:mx-auto bg-card py-12 px-16 rounded shadow">
+<form method="POST" action="{{ route('login') }}" class="lg:w-1/4 lg:mx-auto bg-card py-12 px-16 rounded shadow">
     @csrf
 
     <h1 class="text-2xl font-normal mb-10 text-center">Login</h1>
@@ -13,7 +13,7 @@
         <div class="control">
             <input id="email"
                 type="email"
-                class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                class="input bg-transparent border border-muted rounded p-2 text-xs w-full{{ $errors->has('email') ? ' is-invalid' : '' }}"
                 name="email"
                 value="{{ old('email') }}"
                 required>
@@ -26,7 +26,7 @@
         <div class="control">
             <input id="password"
                     type="password"
-                    class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                    class="input bg-transparent border border-muted rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
                     name="password"
                     required>
         </div>

@@ -538,6 +538,25 @@ table {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .08);
 }
 
+.dropdown-menu-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: block;
+  color: var(--text-default-color);
+  text-decoration: none;
+  font-size: .875rem;
+  line-height: 2;
+}
+
+.dropdown-menu-link:hover {
+  text-decoration: underline;
+  background: rgba(0, 0, 0, .1);
+}
+
+.dropdown-toggle > button:focus {
+  outline: 0;
+}
+
 .theme-light {
   --page-background-color: #f5f6f9;
   --card-background-color: white;
